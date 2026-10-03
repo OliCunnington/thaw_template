@@ -65,6 +65,10 @@ fn HomePage() -> impl IntoView {
                 "Click Me: " {count}
             </Button>
 
+            // <Spacer />
+            // <NavTest />
+            <Spacer />
+            //Login Card... Centering issues TODO
             <Card>
                 <CardHeader>
                     <Flex justify=FlexJustify::Center inline=true>
@@ -87,7 +91,106 @@ fn HomePage() -> impl IntoView {
                 </CardFooter>
             </Card>
 
-
+            <Spacer />
+            // Table test
+            <Table>
+                <TableHeader>
+                    <TableRow>
+                        <TableHeaderCell resizable=true min_width=100.0>"Product"</TableHeaderCell>
+                        <TableHeaderCell resizable=true>"Count"</TableHeaderCell>
+                        <TableHeaderCell>"Date"</TableHeaderCell>
+                        <TableHeaderCell>"Actions"</TableHeaderCell>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                        <TableCell>
+                            <TableCellLayout truncate=true>
+                                "Renders content with overflow: hidden and text-overflow: ellipsis"
+                            </TableCellLayout>
+                        </TableCell>
+                        <TableCell>
+                            <TableCellLayout truncate=true>
+                                "Renders content with overflow: hidden and text-overflow: ellipsis"
+                            </TableCellLayout>
+                        </TableCell>
+                        <TableCell>
+                            <TableCellLayout>
+                                "2023-10-08"
+                            </TableCellLayout>
+                        </TableCell>
+                        <Actions />
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>
+                            <TableCellLayout>
+                                "Apple"
+                            </TableCellLayout>
+                        </TableCell>
+                        <TableCell>
+                            <TableCellLayout>
+                                "2"
+                            </TableCellLayout>
+                        </TableCell>
+                        <TableCell>
+                            <TableCellLayout>
+                                "2026-10-02"
+                            </TableCellLayout>
+                        </TableCell>
+                        <Actions />
+                    </TableRow>
+                </TableBody>
+            </Table>
         </ConfigProvider>
+    }
+}
+
+
+
+#[component]
+fn Actions() -> impl IntoView {
+    view!{
+        <TableCell>
+            <TableCellLayout>
+                <img src="/icons/edit-svgrepo-com.svg" alt="Edit" width="24" height="24"/>
+                <img src="/icons/info-square-svgrepo-com.svg" alt="Info" width="24" height="24"/>
+                <img src="/icons/more-vertical-svgrepo-com.svg" alt="More" width="24" height="24"/>
+                <img src="/icons/x-square-svgrepo-com.svg" alt="Delete" width="24" height="24"/>
+            </TableCellLayout>
+        </TableCell>
+    }
+}
+
+#[component]
+fn Spacer() -> impl IntoView {
+    view!{
+        <div style="padding: 30px 0;">
+            <Divider />
+        </div>
+    }
+}
+
+#[component]
+fn NavTest() -> impl IntoView {
+    // breaks tokio?
+    view!{
+        <NavDrawer>
+            <NavCategory value="web_page">
+                <NavCategoryItem slot>
+                    "Manage Page"
+                </NavCategoryItem>
+                <NavSubItem value="target">
+                    "Target"
+                </NavSubItem>
+            </NavCategory>
+            <NavCategory value="product_page">
+                <NavCategoryItem slot>
+                    "Manage Products and Orders"
+                </NavCategoryItem>
+                <NavSubItem value="target">
+                    "Target"
+                </NavSubItem>
+            </NavCategory>
+        </NavDrawer>
     }
 }
